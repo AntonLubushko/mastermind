@@ -36,7 +36,6 @@ class App extends Component {
 
     render() {
         const classes = this.props.classes;
-        console.log(this.state);
         return (
             <div className="App">
                 <div className="App-header">
