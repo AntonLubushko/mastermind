@@ -1,9 +1,12 @@
 'use strict';
+// Sets array of all 1296 proper numbers
 const SET = Array.from({length: 5666}, (v, k) => String(k + 1001)).filter(number => /^[1-6]{4}$/.test(number));
 
+// Refreshes a set of possible numbers
 function getNewNumberSet(set, guessNumber, code) {
     return set.filter(number => getCodebreakerAnswer(number, guessNumber) === code);
 }
+
 function getCodebreakerAnswer(mindNumber, guessNumber) {
     let answer = [0, 0];
     let mindArray = mindNumber.split('');
@@ -25,6 +28,12 @@ function getCodebreakerAnswer(mindNumber, guessNumber) {
     });
     return answer.join('');
 }
+/**
+ *
+ * @param mindNumber - a number that codemaker conceived
+ * @returns {Array} - an array of codebreaker steps
+ *
+ */
 export function startGuessing(mindNumber) {
     let set = Array.from(SET);
     let steps = [];
@@ -47,7 +56,8 @@ export function startGuessing(mindNumber) {
     }
     return steps;
 }
-
+// Just for testing, this function prints a quantity of games,
+// where number of steps to win exceeded some value (amount)
 function printExceeding(amount) {
     let count = SET.reduce((exceed, mindNumber) =>
     exceed + (startGuessing(mindNumber).attempts > amount ? 1 : 0), 0);
