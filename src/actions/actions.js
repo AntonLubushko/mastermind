@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * Based on algorithm of D. Knuth for game "mastermind"
+ */
 // Sets array of all 1296 proper numbers
 const SET = Array.from({length: 5666}, (v, k) => String(k + 1001)).filter(number => /^[1-6]{4}$/.test(number));
 
