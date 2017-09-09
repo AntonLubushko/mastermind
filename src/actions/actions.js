@@ -1,6 +1,7 @@
 'use strict';
 /**
  * Based on algorithm of D. Knuth for game "mastermind"
+ * Only in cases 1335 and 1666 it needs 7 steps, in other cases needs 6 or less steps
  */
 // Sets array of all 1296 proper numbers
 const SET = Array.from({length: 5666}, (v, k) => String(k + 1001)).filter(number => /^[1-6]{4}$/.test(number));
@@ -55,7 +56,8 @@ export function startGuessing(mindNumber) {
             return steps;
         }
         set = getNewNumberSet(set, guessNumber, code);
-        guessNumber = set.length > 9 ? set[9] : set[set.length - 1];
+        // Prefer to choose tenth number or the pre-last
+        guessNumber = set.length > 9 ? set[9] : (set.length > 2 ?set[set.length - 2]:set[0]);
     }
     return steps;
 }
