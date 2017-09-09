@@ -7,10 +7,10 @@ const SET = Array.from({length: 5666}, (v, k) => String(k + 1001)).filter(number
 
 // Refreshes a set of possible numbers
 function getNewNumberSet(set, guessNumber, code) {
-    return set.filter(number => getCodebreakerAnswer(number, guessNumber) === code);
+    return set.filter(number => getCodemakerAnswer(number, guessNumber) === code);
 }
 
-function getCodebreakerAnswer(mindNumber, guessNumber) {
+function getCodemakerAnswer(mindNumber, guessNumber) {
     let answer = [0, 0];
     let mindArray = mindNumber.split('');
     let guessArray = guessNumber.split('');
@@ -43,7 +43,7 @@ export function startGuessing(mindNumber) {
     let guessNumber = '3366';
     let attempt = 0;
     while (attempt++ < 10) {
-        let code = getCodebreakerAnswer(mindNumber, guessNumber);
+        let code = getCodemakerAnswer(mindNumber, guessNumber);
         steps.push({
             code: code,
             attempts: attempt,
